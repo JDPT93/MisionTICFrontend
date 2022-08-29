@@ -37,8 +37,8 @@ export default function SignIn() {
             <h2>Sign in</h2>
             <label htmlFor='sign-in-nickname'>Nickname</label>
             <input id='sign-in-nickname' name='nickname' placeholder='Nickname' type='text' />
-            <label htmlFor='password'>Password</label>
-            <input id='password' name='password' placeholder='Password' type='password' />
+            <label htmlFor='sign-in-password'>Password</label>
+            <input id='sign-in-password' name='password' placeholder='Password' type='password' />
             <button type='submit'>Sing in</button>
         </form>
     );

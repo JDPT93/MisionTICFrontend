@@ -45,8 +45,8 @@ export default function SignUp() {
             <input id='email' name='email' placeholder='Email' type='email' />
             <label htmlFor='sign-up-nickname'>Nickname</label>
             <input id='sign-up-nickname' name='nickname' placeholder='Nickname' type='text' />
-            <label htmlFor='password'>Password</label>
-            <input id='password' name='password' placeholder='Password' type='password' />
+            <label htmlFor='sign-up-password'>Password</label>
+            <input id='sign-up-password' name='password' placeholder='Password' type='password' />
             <button type='submit'>Sign up</button>
         </form>
     );

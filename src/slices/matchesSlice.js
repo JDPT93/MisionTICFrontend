@@ -6,7 +6,7 @@ const matchesSlice = createSlice({
     reducers: {
         loadMatches(state, action) {
             state.length = 0;
-            state.push(...action.payload);
+            state.push(...action.payload.sort((leftMatch, rightMatch) => new Date(rightMatch.date).getTime() - new Date(leftMatch.date).getTime()));
         },
         addMatch(state, action) {
             state.push(action.payload);

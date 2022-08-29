@@ -14,7 +14,6 @@ export default function Results() {
     React.useEffect(() => {
         api.matches.findAll().then(data => {
             dispatch(loadMatches(data));
-            console.log(data)
             dispatch(pushNotification({
                 type: 'information',
                 content: data.length > 0 ? 'Results were loaded' : 'No Results were found'
@@ -47,7 +46,7 @@ export default function Results() {
                     </thead>
                     <tbody>
                         {matches.map(match =>
-                            <tr key={match.id}>
+                            <tr key={`match-${match.id}`}>
                                 <td>{match.id}</td>
                                 <td>{match.user.fullname}</td>
                                 <td>{match.date}</td>
