@@ -9,9 +9,8 @@ import { loadTeams } from '../slices/teamsSlice';
 
 import api from '../api';
 
-export default function Matches({ user }) {
+export function MatchesTable() {
     const matches = useSelector(state => [...state.matches].sort((leftMatch, rightMatch) => new Date(rightMatch.date).getTime() - new Date(leftMatch.date).getTime()));
-    const teams = useSelector(state => [...state.teams].sort((leftTeam, rightTeam) => leftTeam.name.localeCompare(rightTeam.name)));
     const dispatch = useDispatch();
     React.useEffect(() => {
         api.matches.findAll().then(data => {
@@ -28,6 +27,43 @@ export default function Matches({ user }) {
             }));
             setTimeout(() => dispatch(popNotification()), 10000);
         });
+    }, [dispatch]);
+    return (
+        matches.length === 0
+            ? <p>No Matches were found</p>
+            : <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Local Match</th>
+                        <th>Local Goals</th>
+                        <th>Guest Goals</th>
+                        <th>Guest Match</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {matches.map(match =>
+                        <tr key={`match-${match.id}`}>
+                            <td>{match.id}</td>
+                            <td>{match.user.fullName}</td>
+                            <td>{match.date.substr(0, 16).replace('T', ' ')}</td>
+                            <td>{match.localTeam.name}</td>
+                            <td>{match.localGoals}</td>
+                            <td>{match.guestGoals}</td>
+                            <td>{match.guestTeam.name}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+    );
+}
+
+export default function Matches({ user }) {
+    const teams = useSelector(state => [...state.teams].sort((leftTeam, rightTeam) => leftTeam.name.localeCompare(rightTeam.name)));
+    const dispatch = useDispatch();
+    React.useEffect(() => {
         api.teams.findAll().then(data => {
             dispatch(loadTeams(data));
             dispatch(pushNotification({
@@ -89,34 +125,7 @@ export default function Matches({ user }) {
                 <input defaultValue={0} id='guestGoals' min={0} name='guestGoals' type='number' />
                 <button type='submit'>Save Team</button>
             </form>
-            {matches.length === 0
-                ? <p>No Matches were found</p>
-                : <table>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>User</th>
-                            <th>Date</th>
-                            <th>Local Match</th>
-                            <th>Local Goals</th>
-                            <th>Guest Goals</th>
-                            <th>Guest Match</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {matches.map(match =>
-                            <tr key={`match-${match.id}`}>
-                                <td>{match.id}</td>
-                                <td>{match.user.fullName}</td>
-                                <td>{match.date.substr(0, 16).replace('T', ' ')}</td>
-                                <td>{match.localTeam.name}</td>
-                                <td>{match.localGoals}</td>
-                                <td>{match.guestGoals}</td>
-                                <td>{match.guestTeam.name}</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>}
+            <MatchesTable />
         </div >
     );
 }
