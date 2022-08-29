@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
-import { signOut } from '../slices/userSlice';
+import { signOut } from '../slices/usersSlice';
 
 export default function Main({ children, user }) {
     const dispatch = useDispatch();
@@ -15,9 +15,9 @@ export default function Main({ children, user }) {
         <div id='main'>
             <aside>
                 <h3>{user.fullname}</h3>
-                <Link to='/teams'>Manage teams</Link>
-                <Link to='/matches'>Manage matches</Link>
-                <Link to='/results'>See results</Link>
+                <Link to='/teams'>Manage Teams</Link>
+                <Link to='/matches'>Manage Matches</Link>
+                <Link to='/results'>See Results</Link>
                 <Link to='/' onClick={event => dispatch(signOut())}>Sign out</Link>
             </aside>
             <main>

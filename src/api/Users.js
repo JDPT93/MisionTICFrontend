@@ -1,6 +1,6 @@
-import Entity from './Entity';
+import Base from './Base';
 
-export default class User extends Entity {
+export default class Users extends Base {
 
     constructor() {
         super('users');

@@ -1,9 +1,9 @@
-import Match from './api/Match';
-import Team from './api/Team';
-import User from './api/User';
+import Matches from './api/Matches';
+import Teams from './api/Teams';
+import Users from './api/Users';
 
 export default Object.freeze({
-    match: new Match(),
-    team: new Team(),
-    user: new User(),
+    matches: new Matches(),
+    teams: new Teams(),
+    users: new Users(),
 });

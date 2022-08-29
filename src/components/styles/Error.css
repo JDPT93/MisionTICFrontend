@@ -1,0 +1,16 @@
+#error {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 112px);
+    text-align: center;
+    justify-content: center;
+}
+
+#error a {
+    color: #3F51B5;
+    text-decoration: none;
+}
+
+#error a:hover {
+    text-decoration: underline;
+}

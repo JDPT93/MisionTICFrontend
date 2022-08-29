@@ -1,6 +1,6 @@
 #main {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 20vw auto;
     min-height: calc(100vh - 112px);
 }
 
@@ -8,13 +8,12 @@
     background-color: #EEEEEE;
     display: flex;
     flex-direction: column;
-    width: 20vw;
 }
 
 #main>aside>h3 {
     border-bottom: 2px solid #616161;
+    line-height: 48px;
     margin: 12px;
-    padding: 12px 0px;
 }
 
 #main>aside>a {
@@ -25,8 +24,4 @@
 
 #main>aside>a:hover {
     background-color: #E0E0E0;
-}
-
-#main>main {
-    padding: 8px;
 }

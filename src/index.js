@@ -10,9 +10,15 @@ import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux'
 
-import userReducer from './slices/userSlice';
+import usersReducer from './slices/usersSlice';
+import teamsReducer from './slices/teamsSlice';
 
-const store = configureStore({ reducer: userReducer });
+const store = configureStore({
+  reducer: {
+    users: usersReducer,
+    teams: teamsReducer,
+  }
+});
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

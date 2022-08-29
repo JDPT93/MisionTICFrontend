@@ -3,7 +3,7 @@ import React from 'react';
 import './styles/SignUp.css';
 
 import { useDispatch } from 'react-redux';
-import { signUp } from '../slices/userSlice';
+import { signUp } from '../slices/usersSlice';
 
 import api from '../api';
 
@@ -12,12 +12,16 @@ export default function SignUp() {
     return (
         <form autoComplete='off' id='sign-up' method='post' onSubmit={event => {
             event.preventDefault();
-            api.user.signUp({
+            api.users.signUp({
                 fullname: event.target.fullname.value,
                 email: event.target.email.value,
                 nickname: event.target.nickname.value,
                 password: event.target.password.value,
             }).then(data => {
+                event.target.fullname.value = '';
+                event.target.email.value = '';
+                event.target.nickname.value = '';
+                event.target.password.value = '';
                 localStorage.setItem('token', data.token);
                 dispatch(signUp(data.user));
             }).catch(error => {

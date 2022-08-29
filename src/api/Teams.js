@@ -1,6 +1,6 @@
-import Entity from './Entity';
+import Base from './Base';
 
-export default class Team extends Entity {
+export default class Teams extends Base {
 
     constructor() {
         super('teams');
@@ -11,7 +11,7 @@ export default class Team extends Entity {
     }
 
     save(team) {
-        this.post(team, null, { 'Authorization': `Bearer ${localStorage.getItem('token')}` });
+        return this.post(team, null, { 'Authorization': `Bearer ${localStorage.getItem('token')}` });
     }
 
 }

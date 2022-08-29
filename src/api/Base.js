@@ -1,4 +1,4 @@
-export default class Entity {
+export default class Base {
 
     url;
 
@@ -9,7 +9,7 @@ export default class Entity {
 
     fetch(method, path, body, headers) {
         return new Promise((fullfill, reject) => fetch(this.url.concat(path || ''), {
-            body: JSON.stringify(body),
+            body: body == null ? null : JSON.stringify(body),
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

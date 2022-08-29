@@ -1,6 +1,6 @@
-import Entity from './Entity';
+import Base from './Base';
 
-export default class Match extends Entity {
+export default class Matches extends Base {
 
     constructor() {
         super('matches');
@@ -11,7 +11,7 @@ export default class Match extends Entity {
     }
 
     save(match) {
-        this.post(match, null, { 'Authorization': `Bearer ${localStorage.getItem('token')}` });
+        return this.post(match, null, { 'Authorization': `Bearer ${localStorage.getItem('token')}` });
     }
 
 }

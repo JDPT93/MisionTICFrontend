@@ -14,14 +14,16 @@ import Home from './Home';
 import Main from './Main';
 import Matches from './Matches';
 import Teams from './Teams';
+import Results from './Results';
+import Error from './Error';
 
 export default function App() {
-    const user = useSelector(state => state.user);
+    const user = useSelector(state => state.users.user);
     return (
         <BrowserRouter>
             <div id='app'>
                 <header>
-                    <h1>Soccer results</h1>
+                    <h1>Soccer Results</h1>
                 </header>
                 <Routes>
                     <Route exact path='/' element={
@@ -32,16 +34,22 @@ export default function App() {
                     <Route exact path='/teams' element={
                         user
                             ? <Main user={user}><Teams /></Main>
-                            : <></>
+                            : <Error code={401} />
                     } />
                     <Route exact path='/matches' element={
                         user
                             ? <Main user={user}><Matches /></Main>
-                            : <></>
+                            : <Error code={401} />
                     } />
+                    <Route exact path='/results' element={
+                        user
+                            ? <Main user={user}><Results /></Main>
+                            : <Error code={401} />
+                    } />
+                    <Route path='*' element={<Error code={404} />} />
                 </Routes>
                 <footer>
-                    &copy; Soccer results 2022
+                    &copy; Soccer Results 2022
                 </footer>
             </div>
         </BrowserRouter>
