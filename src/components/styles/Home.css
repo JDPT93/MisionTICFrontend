@@ -1,13 +1,6 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-main {
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    grid-template: auto / repeat(2, 1fr);
-    justify-items: center
+#home {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-height: calc(100vh - 112px);
 }

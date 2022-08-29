@@ -8,22 +8,42 @@ import {
     Route
 } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
+
 import Home from './Home';
+import Main from './Main';
 import Matches from './Matches';
 import Teams from './Teams';
 
 export default function App() {
+    const user = useSelector(state => state.user);
     return (
         <BrowserRouter>
-            <header></header>
-            <main>
+            <div id='app'>
+                <header>
+                    <h1>Soccer results</h1>
+                </header>
                 <Routes>
-                    <Route exact path='/' element={<Home />} />
-                    <Route exact path='/teams' element={<Teams />} />
-                    <Route exact path='/matches' element={<Matches />} />
+                    <Route exact path='/' element={
+                        user
+                            ? <Main user={user} />
+                            : <Home />
+                    } />
+                    <Route exact path='/teams' element={
+                        user
+                            ? <Main user={user}><Teams /></Main>
+                            : <></>
+                    } />
+                    <Route exact path='/matches' element={
+                        user
+                            ? <Main user={user}><Matches /></Main>
+                            : <></>
+                    } />
                 </Routes>
-            </main>
-            <footer></footer>
+                <footer>
+                    &copy; Soccer results 2022
+                </footer>
+            </div>
         </BrowserRouter>
     );
 }
