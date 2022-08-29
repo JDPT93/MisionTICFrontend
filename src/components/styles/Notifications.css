@@ -26,3 +26,12 @@
 #notifications>li.error {
     background-color: #F44336;
 }
+
+#notifications>li>ul {
+    list-style: square;
+    padding-left: 16px;
+}
+
+#notifications>li>ul>li:not(:first-child) {
+    margin-top: 8px;
+}
