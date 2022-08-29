@@ -6,7 +6,7 @@ const teamsSlice = createSlice({
     reducers: {
         loadTeams(state, action) {
             state.length = 0;
-            state.push(...action.payload.sort((leftTeam, rightTeam) => leftTeam.name.localeCompare(rightTeam.name)));
+            state.push(...action.payload);
         },
         addTeam(state, action) {
             state.push(action.payload);

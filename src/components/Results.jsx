@@ -9,7 +9,7 @@ import { loadMatches } from '../slices/matchesSlice';
 import api from '../api';
 
 export default function Results() {
-    const matches = useSelector(state => state.matches);
+    const matches = useSelector(state => state.matches.sort((leftMatch, rightMatch) => new Date(rightMatch.date).getTime() - new Date(leftMatch.date).getTime()));
     const dispatch = useDispatch();
     React.useEffect(() => {
         api.matches.findAll().then(data => {

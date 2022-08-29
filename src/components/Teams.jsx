@@ -9,7 +9,7 @@ import { addTeam, loadTeams } from '../slices/teamsSlice';
 import api from '../api';
 
 export default function Teams() {
-    const teams = useSelector(state => state.teams);
+    const teams = useSelector(state => state.teams.sort((leftTeam, rightTeam) => leftTeam.name.localeCompare(rightTeam.name)));
     const dispatch = useDispatch();
     React.useEffect(() => {
         api.teams.findAll().then(data => {
