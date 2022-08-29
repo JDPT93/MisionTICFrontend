@@ -10,8 +10,8 @@ import { loadTeams } from '../slices/teamsSlice';
 import api from '../api';
 
 export default function Matches({ user }) {
-    const matches = useSelector(state => state.matches.sort((leftMatch, rightMatch) => new Date(rightMatch.date).getTime() - new Date(leftMatch.date).getTime()));
-    const teams = useSelector(state => state.teams.sort((leftTeam, rightTeam) => leftTeam.name.localeCompare(rightTeam.name)));
+    const matches = useSelector(state => [...state.matches].sort((leftMatch, rightMatch) => new Date(rightMatch.date).getTime() - new Date(leftMatch.date).getTime()));
+    const teams = useSelector(state => [...state.teams].sort((leftTeam, rightTeam) => leftTeam.name.localeCompare(rightTeam.name)));
     const dispatch = useDispatch();
     React.useEffect(() => {
         api.matches.findAll().then(data => {
