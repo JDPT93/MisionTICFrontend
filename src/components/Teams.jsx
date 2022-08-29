@@ -25,7 +25,7 @@ export default function Teams() {
                 content: error.message
             }));
             setTimeout(() => dispatch(popNotification()), 10000);
-        })
+        });
     }, [dispatch]);
     return (
         <div id='teams'>
@@ -35,7 +35,7 @@ export default function Teams() {
                 api.teams.save({
                     name: event.target.name.value
                 }).then(data => {
-                    console.log(data);
+                    event.target.reset();
                     dispatch(addTeam(data));
                     dispatch(pushNotification({
                         type: 'success',
@@ -49,7 +49,6 @@ export default function Teams() {
                     }));
                     setTimeout(() => dispatch(popNotification()), 10000);
                 });
-                event.target.name.value = '';
             }}>
                 <label htmlFor='name'>Team Name</label>
                 <input id='name' name='name' placeholder='Team Name' type='text' />

@@ -19,10 +19,7 @@ export default function SignUp() {
                 nickname: event.target.nickname.value,
                 password: event.target.password.value,
             }).then(data => {
-                event.target.fullname.value = '';
-                event.target.email.value = '';
-                event.target.nickname.value = '';
-                event.target.password.value = '';
+                event.target.reset();
                 localStorage.setItem('token', data.token);
                 dispatch(signUp(data.user));
                 dispatch(pushNotification({

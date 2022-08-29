@@ -25,7 +25,7 @@ export default function Results() {
                 content: error.message
             }));
             setTimeout(() => dispatch(popNotification()), 10000);
-        })
+        });
     }, [dispatch]);
     return (
         <div id='results'>
@@ -49,7 +49,7 @@ export default function Results() {
                             <tr key={`match-${match.id}`}>
                                 <td>{match.id}</td>
                                 <td>{match.user.fullname}</td>
-                                <td>{match.date}</td>
+                                <td>{match.date.substr(0, 16).replace('T', ' ')}</td>
                                 <td>{match.localTeam.name}</td>
                                 <td>{match.localGoals}</td>
                                 <td>{match.guestGoals}</td>

@@ -29,20 +29,34 @@ export default function App() {
                 </header>
                 <Routes>
                     <Route exact path='/' element={user
-                        ? <Main user={user} />
-                        : <Home />
+                        ?
+                        <Main user={user} />
+                        :
+                        <Home />
                     } />
                     <Route exact path='/teams' element={user
-                        ? <Main user={user}><Teams /></Main>
-                        : <Error code={401} />
+                        ?
+                        <Main user={user}>
+                            <Teams user={user} />
+                        </Main>
+                        :
+                        <Error code={401} />
                     } />
                     <Route exact path='/matches' element={user
-                        ? <Main user={user}><Matches /></Main>
-                        : <Error code={401} />
+                        ?
+                        <Main user={user}>
+                            <Matches user={user} />
+                        </Main>
+                        :
+                        <Error code={401} />
                     } />
                     <Route exact path='/results' element={user
-                        ? <Main user={user}><Results /></Main>
-                        : <Error code={401} />
+                        ?
+                        <Main user={user}>
+                            <Results user={user} />
+                        </Main>
+                        :
+                        <Error code={401} />
                     } />
                     <Route path='*' element={<Error code={404} />} />
                 </Routes>

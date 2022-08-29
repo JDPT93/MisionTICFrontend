@@ -9,9 +9,8 @@ import { loadTeams } from '../slices/teamsSlice';
 
 import api from '../api';
 
-export default function Matches() {
-    const matches = useSelector(state => state.matches);
-    const teams = useSelector(state => state.teams);
+export default function Matches({ user }) {
+    const { teams, matches } = useSelector(state => state);
     const dispatch = useDispatch();
     React.useEffect(() => {
         api.matches.findAll().then(data => {
@@ -47,26 +46,76 @@ export default function Matches() {
         <div id='matches'>
             <h2>Manage Matches</h2>
             <form autoComplete='off' method='post' onSubmit={event => {
-
+                event.preventDefault();
+                api.matches.save({
+                    user,
+                    localTeam: teams[event.target.localTeam.value],
+                    guestTeam: teams[event.target.guestTeam.value],
+                    date: event.target.date.value,
+                    localGoals: event.target.localGoals.value,
+                    guestGoals: event.target.guestGoals.value,
+                }).then(data => {
+                    event.target.reset();
+                    dispatch(addMatch(data));
+                    dispatch(pushNotification({
+                        type: 'success',
+                        content: `Match ${data.localTeam.name} vs. ${data.guestTeam.name} - ${data.date} was added`
+                    }));
+                    setTimeout(() => dispatch(popNotification()), 10000);
+                }).catch(error => {
+                    dispatch(pushNotification({
+                        type: 'error',
+                        content: error.message
+                    }));
+                    setTimeout(() => dispatch(popNotification()), 10000);
+                });
             }}>
                 <label htmlFor='date'>Local Team</label>
                 <input id='date' name='date' type='datetime-local' />
                 <label htmlFor='localTeam'>Local Team</label>
-                <select defaultValue={false} id='localTeam' name='localTeam'>
-                    <option disabled value={false}>Choose a Team</option>
-                    {teams.map(team => <option value={team}>{team.name}</option>)}
+                <select defaultValue={-1} id='localTeam' name='localTeam'>
+                    <option disabled value={-1}>Choose a Team</option>
+                    {teams.map((team, index) => <option key={`local-team-${index}`} value={index}>{team.name}</option>)}
                 </select>
                 <label htmlFor='localGoals'>Local Goals</label>
                 <input defaultValue={0} id='localGoals' min={0} name='localGoals' type='number' />
                 <label htmlFor='guestTeam'>Guest Team</label>
-                <select defaultValue={false} id='guestTeam' name='guestTeam'>
-                    <option disabled value={false}>Choose a Team</option>
-                    {teams.map(team => <option value={team}>{team.name}</option>)}
+                <select defaultValue={-1} id='guestTeam' name='guestTeam'>
+                    <option disabled value={-1}>Choose a Team</option>
+                    {teams.map((team, index) => <option key={`local-team-${index}`} value={index}>{team.name}</option>)}
                 </select>
                 <label htmlFor='guestGoals'>Guest Goals</label>
                 <input defaultValue={0} id='guestGoals' min={0} name='guestGoals' type='number' />
                 <button type='submit'>Save Team</button>
             </form>
-        </div>
+            {matches.length === 0
+                ? <p>No results were found</p>
+                : <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>User</th>
+                            <th>Date</th>
+                            <th>Local Match</th>
+                            <th>Local Goals</th>
+                            <th>Guest Goals</th>
+                            <th>Guest Match</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {matches.map(match =>
+                            <tr key={`match-${match.id}`}>
+                                <td>{match.id}</td>
+                                <td>{match.user.fullname}</td>
+                                <td>{match.date.substr(0, 16).replace('T', ' ')}</td>
+                                <td>{match.localTeam.name}</td>
+                                <td>{match.localGoals}</td>
+                                <td>{match.guestGoals}</td>
+                                <td>{match.guestTeam.name}</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>}
+        </div >
     );
 }
