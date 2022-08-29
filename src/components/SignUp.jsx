@@ -36,8 +36,8 @@ export default function SignUp() {
             });
         }}>
             <h2>Sign up</h2>
-            <label htmlFor='fullName'>Fullname</label>
-            <input id='fullName' name='fullName' placeholder='Fullname' type='text' />
+            <label htmlFor='fullName'>Full Name</label>
+            <input id='fullName' name='fullName' placeholder='Full Name' type='text' />
             <label htmlFor='email'>Email</label>
             <input id='email' name='email' placeholder='Email' type='email' />
             <label htmlFor='sign-up-nickname'>Nickname</label>
