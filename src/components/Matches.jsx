@@ -107,7 +107,7 @@ export default function Matches({ user }) {
                     setTimeout(() => dispatch(popNotification()), 10000);
                 });
             }}>
-                <label htmlFor='date'>Local Team</label>
+                <label htmlFor='date'>Date</label>
                 <input id='date' name='date' type='datetime-local' />
                 <label htmlFor='localTeam'>Local Team</label>
                 <select defaultValue={-1} id='localTeam' name='localTeam'>
