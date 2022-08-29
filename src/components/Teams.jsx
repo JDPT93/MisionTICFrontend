@@ -14,8 +14,17 @@ export default function Teams() {
     React.useEffect(() => {
         api.teams.findAll().then(data => {
             dispatch(loadTeams(data));
+            dispatch(pushNotification({
+                type: 'information',
+                content: data.length > 0 ? 'Teams were loaded' : 'No Teams were found'
+            }));
+            setTimeout(() => dispatch(popNotification()), 10000);
         }).catch(error => {
-            console.error(error);
+            dispatch(pushNotification({
+                type: 'error',
+                content: error.message
+            }));
+            setTimeout(() => dispatch(popNotification()), 10000);
         });
     }, [dispatch]);
     return (
@@ -28,10 +37,16 @@ export default function Teams() {
                 }).then(data => {
                     console.log(data);
                     dispatch(addTeam(data));
-                    dispatch(pushNotification({ type: 'error', content: `${data.name} was added` }));
+                    dispatch(pushNotification({
+                        type: 'success',
+                        content: `Team '${data.name}' was added`
+                    }));
                     setTimeout(() => dispatch(popNotification()), 10000);
                 }).catch(error => {
-                    dispatch(pushNotification({ type: 'error', content: error.message }));
+                    dispatch(pushNotification({
+                        type: 'error',
+                        content: error.message
+                    }));
                     setTimeout(() => dispatch(popNotification()), 10000);
                 });
                 event.target.name.value = '';
@@ -48,15 +63,12 @@ export default function Teams() {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        teams.map(
-                            team =>
-                                <tr key={team.id}>
-                                    <td>{team.id}</td>
-                                    <td>{team.name}</td>
-                                </tr>
-                        )
-                    }
+                    {teams.map(team =>
+                        <tr key={team.id}>
+                            <td>{team.id}</td>
+                            <td>{team.name}</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>

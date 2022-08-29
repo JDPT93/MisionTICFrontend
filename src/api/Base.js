@@ -17,7 +17,7 @@ export default class Base {
             },
             method,
             mode: 'cors',
-        }).then(response => response.json().then(response.ok ? fullfill : reject, reject), reject));
+        }).then(response => response.json().then(response.ok ? fullfill : reject).catch(reject)).catch(reject));
     }
 
     get(path, headers) {

@@ -1,0 +1,17 @@
+#results {
+    display: flex;
+    flex-direction: column;
+}
+
+#results>h2 {
+    border-bottom: 2px solid #616161;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    line-height: 48px;
+    margin: 12px;
+    margin-bottom: 0;
+}
+
+#results>p {
+    text-align: center;
+}

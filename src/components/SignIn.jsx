@@ -21,10 +21,16 @@ export default function SignIn() {
                 event.target.password.value = '';
                 localStorage.setItem('token', data.token);
                 dispatch(signIn(data.user));
-                dispatch(pushNotification({ type: 'success', content: `Welcome ${data.user.fullname}!` }));
+                dispatch(pushNotification({
+                    type: 'success',
+                    content: `Welcome ${data.user.fullname}!`
+                }));
                 setTimeout(() => dispatch(popNotification()), 10000);
             }).catch(error => {
-                dispatch(pushNotification({ type: 'error', content: error.message }));
+                dispatch(pushNotification({
+                    type: 'error',
+                    content: error.message
+                }));
                 setTimeout(() => dispatch(popNotification()), 10000);
             });
         }}>

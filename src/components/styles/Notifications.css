@@ -19,18 +19,10 @@
     background-color: #8BC34A;
 }
 
-#notifications>li::before {
-    font-weight: bold;
-}
-
-#notifications>li.success::before {
-    content: 'Success: ';
+#notifications>li.information {
+    background-color: #00BCD4;
 }
 
 #notifications>li.error {
     background-color: #F44336;
-}
-
-#notifications>li.error::before {
-    content: 'Error: ';
 }

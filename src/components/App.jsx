@@ -28,25 +28,21 @@ export default function App() {
                     <h1>Soccer Results</h1>
                 </header>
                 <Routes>
-                    <Route exact path='/' element={
-                        user
-                            ? <Main user={user} />
-                            : <Home />
+                    <Route exact path='/' element={user
+                        ? <Main user={user} />
+                        : <Home />
                     } />
-                    <Route exact path='/teams' element={
-                        user
-                            ? <Main user={user}><Teams /></Main>
-                            : <Error code={401} />
+                    <Route exact path='/teams' element={user
+                        ? <Main user={user}><Teams /></Main>
+                        : <Error code={401} />
                     } />
-                    <Route exact path='/matches' element={
-                        user
-                            ? <Main user={user}><Matches /></Main>
-                            : <Error code={401} />
+                    <Route exact path='/matches' element={user
+                        ? <Main user={user}><Matches /></Main>
+                        : <Error code={401} />
                     } />
-                    <Route exact path='/results' element={
-                        user
-                            ? <Main user={user}><Results /></Main>
-                            : <Error code={401} />
+                    <Route exact path='/results' element={user
+                        ? <Main user={user}><Results /></Main>
+                        : <Error code={401} />
                     } />
                     <Route path='*' element={<Error code={404} />} />
                 </Routes>
