@@ -3,6 +3,7 @@ import React from 'react';
 import './styles/SignUp.css';
 
 import { useDispatch } from 'react-redux';
+import { popNotification, pushNotification } from '../slices/notificationsSlice';
 import { signUp } from '../slices/usersSlice';
 
 import api from '../api';
@@ -24,19 +25,22 @@ export default function SignUp() {
                 event.target.password.value = '';
                 localStorage.setItem('token', data.token);
                 dispatch(signUp(data.user));
+                dispatch(pushNotification({ type: 'success', content: `Welcome ${data.user.fullname}!` }));
+                setTimeout(() => dispatch(popNotification()), 10000);
             }).catch(error => {
-                console.error(error);
+                dispatch(pushNotification({ type: 'error', content: error.message }));
+                setTimeout(() => dispatch(popNotification()), 10000);
             });
         }}>
             <h2>Sign up</h2>
             <label htmlFor='fullname'>Fullname</label>
-            <input id='fullname' name='fullname' placeholder='Fullname' type='text' value='José Daniel Pérez Torres' />
+            <input id='fullname' name='fullname' placeholder='Fullname' type='text' />
             <label htmlFor='email'>Email</label>
-            <input id='email' name='email' placeholder='Email' type='email' value='josedanielpereztorres@gmail.com' />
-            <label htmlFor='nickname'>Nickname</label>
-            <input id='nickname' name='nickname' placeholder='Nickname' type='text' value='JDPT93' />
+            <input id='email' name='email' placeholder='Email' type='email' />
+            <label htmlFor='sign-up-nickname'>Nickname</label>
+            <input id='sign-up-nickname' name='nickname' placeholder='Nickname' type='text' />
             <label htmlFor='password'>Password</label>
-            <input id='password' name='password' placeholder='Password' type='password' value='Az*12345' />
+            <input id='password' name='password' placeholder='Password' type='password' />
             <button type='submit'>Sign up</button>
         </form>
     );

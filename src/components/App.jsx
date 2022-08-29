@@ -16,8 +16,10 @@ import Matches from './Matches';
 import Teams from './Teams';
 import Results from './Results';
 import Error from './Error';
+import Notifications from './Notifications';
 
 export default function App() {
+    const notifications = useSelector(state => state.notifications);
     const user = useSelector(state => state.users.user);
     return (
         <BrowserRouter>
@@ -51,6 +53,7 @@ export default function App() {
                 <footer>
                     &copy; Soccer Results 2022
                 </footer>
+                <Notifications notifications={notifications} />
             </div>
         </BrowserRouter>
     );

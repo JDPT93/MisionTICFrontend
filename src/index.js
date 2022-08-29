@@ -10,11 +10,13 @@ import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux'
 
+import notificationsReducer from './slices/notificationsSlice';
 import usersReducer from './slices/usersSlice';
 import teamsReducer from './slices/teamsSlice';
 
 const store = configureStore({
   reducer: {
+    notifications: notificationsReducer,
     users: usersReducer,
     teams: teamsReducer,
   }

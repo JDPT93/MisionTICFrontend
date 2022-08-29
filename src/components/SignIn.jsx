@@ -3,6 +3,7 @@ import React from 'react';
 import './styles/SignIn.css';
 
 import { useDispatch } from 'react-redux';
+import { popNotification, pushNotification } from '../slices/notificationsSlice';
 import { signIn } from '../slices/usersSlice';
 
 import api from '../api';
@@ -20,15 +21,18 @@ export default function SignIn() {
                 event.target.password.value = '';
                 localStorage.setItem('token', data.token);
                 dispatch(signIn(data.user));
+                dispatch(pushNotification({ type: 'success', content: `Welcome ${data.user.fullname}!` }));
+                setTimeout(() => dispatch(popNotification()), 10000);
             }).catch(error => {
-                console.error(error);
+                dispatch(pushNotification({ type: 'error', content: error.message }));
+                setTimeout(() => dispatch(popNotification()), 10000);
             });
         }}>
             <h2>Sign in</h2>
-            <label htmlFor='nickname'>Nickname</label>
-            <input id='nickname' name='nickname' placeholder='Nickname' type='text' value='JDPT93' />
+            <label htmlFor='sign-in-nickname'>Nickname</label>
+            <input id='sign-in-nickname' name='nickname' placeholder='Nickname' type='text' />
             <label htmlFor='password'>Password</label>
-            <input id='password' name='password' placeholder='Password' type='password' value='Az*12345' />
+            <input id='password' name='password' placeholder='Password' type='password' />
             <button type='submit'>Sing in</button>
         </form>
     );

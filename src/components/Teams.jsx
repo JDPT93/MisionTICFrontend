@@ -3,6 +3,7 @@ import React from 'react';
 import './styles/Teams.css';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { popNotification, pushNotification } from '../slices/notificationsSlice';
 import { addTeam, loadTeams } from '../slices/teamsSlice';
 
 import api from '../api';
@@ -27,8 +28,11 @@ export default function Teams() {
                 }).then(data => {
                     console.log(data);
                     dispatch(addTeam(data));
+                    dispatch(pushNotification({ type: 'error', content: `${data.name} was added` }));
+                    setTimeout(() => dispatch(popNotification()), 10000);
                 }).catch(error => {
-                    console.error(error);
+                    dispatch(pushNotification({ type: 'error', content: error.message }));
+                    setTimeout(() => dispatch(popNotification()), 10000);
                 });
                 event.target.name.value = '';
             }}>
@@ -44,12 +48,15 @@ export default function Teams() {
                     </tr>
                 </thead>
                 <tbody>
-                    {teams.map(team =>
-                        <tr key={team.id}>
-                            <td>{team.id}</td>
-                            <td>{team.name}</td>
-                        </tr>
-                    )}
+                    {
+                        teams.map(
+                            team =>
+                                <tr key={team.id}>
+                                    <td>{team.id}</td>
+                                    <td>{team.name}</td>
+                                </tr>
+                        )
+                    }
                 </tbody>
             </table>
         </div>

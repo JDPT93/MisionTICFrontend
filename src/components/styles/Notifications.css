@@ -1,0 +1,36 @@
+#notifications {
+    bottom: 16px;
+    list-style: none;
+    padding: 0;
+    position: fixed;
+    right: 16px;
+    width: 25vw;
+}
+
+#notifications>li {
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: smaller;
+    margin: 4px;
+    padding: 16px;
+}
+
+#notifications>li.success {
+    background-color: #8BC34A;
+}
+
+#notifications>li::before {
+    font-weight: bold;
+}
+
+#notifications>li.success::before {
+    content: 'Success: ';
+}
+
+#notifications>li.error {
+    background-color: #F44336;
+}
+
+#notifications>li.error::before {
+    content: 'Error: ';
+}
