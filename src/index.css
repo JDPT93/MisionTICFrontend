@@ -37,17 +37,19 @@ button {
   padding: 16px;
 }
 
-input {
+input,
+select {
   border: 2px solid #616161;
   border-radius: 4px;
   color: #212121;
   font-size: medium;
   height: 48px;
   margin: 4px 0px;
-  padding: 16px;
+  padding: 0px 16px;
 }
 
-input:focus {
+input:focus,
+select:focus {
   border-color: #3F51B5;
 }
 

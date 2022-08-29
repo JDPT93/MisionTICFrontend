@@ -25,7 +25,7 @@ export default function Results() {
                 content: error.message
             }));
             setTimeout(() => dispatch(popNotification()), 10000);
-        });
+        })
     }, [dispatch]);
     return (
         <div id='results'>

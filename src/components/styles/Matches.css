@@ -1,0 +1,19 @@
+#matches {
+    display: grid;
+    grid-template-columns: calc(25vw + 32px) auto;
+}
+
+#matches>h2 {
+    border-bottom: 2px solid #616161;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    line-height: 48px;
+    margin: 12px;
+    margin-bottom: 0;
+}
+
+#matches>form {
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+}
