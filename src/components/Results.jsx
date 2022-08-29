@@ -48,7 +48,7 @@ export default function Results() {
                         {matches.map(match =>
                             <tr key={`match-${match.id}`}>
                                 <td>{match.id}</td>
-                                <td>{match.user.fullname}</td>
+                                <td>{match.user.fullName}</td>
                                 <td>{match.date.substr(0, 16).replace('T', ' ')}</td>
                                 <td>{match.localTeam.name}</td>
                                 <td>{match.localGoals}</td>

@@ -14,7 +14,7 @@ export default function SignUp() {
         <form autoComplete='off' id='sign-up' method='post' onSubmit={event => {
             event.preventDefault();
             api.users.signUp({
-                fullname: event.target.fullname.value,
+                fullName: event.target.fullName.value,
                 email: event.target.email.value,
                 nickname: event.target.nickname.value,
                 password: event.target.password.value,
@@ -24,7 +24,7 @@ export default function SignUp() {
                 dispatch(signUp(data.user));
                 dispatch(pushNotification({
                     type: 'success',
-                    content: `Welcome ${data.user.fullname}!`
+                    content: `Welcome ${data.user.fullName}!`
                 }));
                 setTimeout(() => dispatch(popNotification()), 10000);
             }).catch(error => {
@@ -36,8 +36,8 @@ export default function SignUp() {
             });
         }}>
             <h2>Sign up</h2>
-            <label htmlFor='fullname'>Fullname</label>
-            <input id='fullname' name='fullname' placeholder='Fullname' type='text' />
+            <label htmlFor='fullName'>Fullname</label>
+            <input id='fullName' name='fullName' placeholder='Fullname' type='text' />
             <label htmlFor='email'>Email</label>
             <input id='email' name='email' placeholder='Email' type='email' />
             <label htmlFor='sign-up-nickname'>Nickname</label>

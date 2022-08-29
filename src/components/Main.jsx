@@ -14,7 +14,7 @@ export default function Main({ children, user }) {
     return (
         <div id='main'>
             <aside>
-                <h3>{user.fullname}</h3>
+                <h3>{user.fullName}</h3>
                 <Link to='/teams'>Manage Teams</Link>
                 <Link to='/matches'>Manage Matches</Link>
                 <Link to='/results'>See Results</Link>

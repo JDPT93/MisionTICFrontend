@@ -22,7 +22,7 @@ export default function SignIn() {
                 dispatch(signIn(data.user));
                 dispatch(pushNotification({
                     type: 'success',
-                    content: `Welcome ${data.user.fullname}!`
+                    content: `Welcome ${data.user.fullName}!`
                 }));
                 setTimeout(() => dispatch(popNotification()), 10000);
             }).catch(error => {
