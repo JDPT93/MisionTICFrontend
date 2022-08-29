@@ -17,7 +17,7 @@ export default function Matches({ user }) {
             dispatch(loadMatches(data));
             dispatch(pushNotification({
                 type: 'information',
-                content: data.length > 0 ? 'Results were loaded' : 'No Results were found'
+                content: data.length > 0 ? 'Matches were loaded' : 'No Matches were found'
             }));
             setTimeout(() => dispatch(popNotification()), 10000);
         }).catch(error => {
@@ -89,7 +89,7 @@ export default function Matches({ user }) {
                 <button type='submit'>Save Team</button>
             </form>
             {matches.length === 0
-                ? <p>No results were found</p>
+                ? <p>No Matches were found</p>
                 : <table>
                     <thead>
                         <tr>
