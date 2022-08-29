@@ -37,10 +37,10 @@ export function MatchesTable() {
                         <th>Id</th>
                         <th>User</th>
                         <th>Date</th>
-                        <th>Local Match</th>
+                        <th>Local Team</th>
                         <th>Local Goals</th>
                         <th>Guest Goals</th>
-                        <th>Guest Match</th>
+                        <th>Guest Team</th>
                     </tr>
                 </thead>
                 <tbody>
