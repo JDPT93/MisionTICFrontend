@@ -57,14 +57,14 @@ export default function Teams() {
             <table>
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        {/* <th>Id</th> */}
                         <th>Team Name</th>
                     </tr>
                 </thead>
                 <tbody>
                     {teams.map(team =>
                         <tr key={`team-${team.id}`}>
-                            <td>{team.id}</td>
+                            {/* <td>{team.id}</td> */}
                             <td>{team.name}</td>
                         </tr>
                     )}

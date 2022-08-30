@@ -34,7 +34,7 @@ export function MatchesTable({ editable }) {
             : <table>
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        {/* <th>Id</th> */}
                         <th>User</th>
                         <th>Date</th>
                         <th>Local Team</th>
@@ -46,7 +46,7 @@ export function MatchesTable({ editable }) {
                 <tbody>
                     {matches.map(match =>
                         <tr key={`match-${match.id}`}>
-                            <td>{match.id}</td>
+                            {/* <td>{match.id}</td> */}
                             <td>{match.user.fullName}</td>
                             <td>{match.date.substr(0, 16).replace('T', ' ')}</td>
                             <td>{match.localTeam.name}</td>
