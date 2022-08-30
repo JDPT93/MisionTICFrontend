@@ -19,13 +19,13 @@ export function MatchesTable({ editable }) {
                 type: 'information',
                 content: data.length > 0 ? 'Matches were loaded' : 'No Matches were found'
             }));
-            setTimeout(() => dispatch(popNotification()), 10000);
+            setTimeout(() => dispatch(popNotification()), 5000);
         }).catch(error => {
             dispatch(pushNotification({
                 type: 'error',
                 content: error.message
             }));
-            setTimeout(() => dispatch(popNotification()), 10000);
+            setTimeout(() => dispatch(popNotification()), 5000);
         });
     }, [dispatch]);
     return (
@@ -61,13 +61,13 @@ export function MatchesTable({ editable }) {
                                             type: 'success',
                                             content: `Match ${data.localTeam.name} vs. ${data.guestTeam.name} - ${data.date} was updated`
                                         }));
-                                        setTimeout(() => dispatch(popNotification()), 10000);
+                                        setTimeout(() => dispatch(popNotification()), 5000);
                                     }).catch(error => {
                                         dispatch(pushNotification({
                                             type: 'error',
                                             content: error.message
                                         }));
-                                        setTimeout(() => dispatch(popNotification()), 10000);
+                                        setTimeout(() => dispatch(popNotification()), 5000);
                                     });
                                 }} />
                                 : match.localGoals
@@ -83,13 +83,13 @@ export function MatchesTable({ editable }) {
                                             type: 'success',
                                             content: `Match ${data.localTeam.name} vs. ${data.guestTeam.name} - ${data.date} was updated`
                                         }));
-                                        setTimeout(() => dispatch(popNotification()), 10000);
+                                        setTimeout(() => dispatch(popNotification()), 5000);
                                     }).catch(error => {
                                         dispatch(pushNotification({
                                             type: 'error',
                                             content: error.message
                                         }));
-                                        setTimeout(() => dispatch(popNotification()), 10000);
+                                        setTimeout(() => dispatch(popNotification()), 5000);
                                     });
                                 }} />
                                 : match.guestGoals
@@ -112,13 +112,13 @@ export default function Matches({ user }) {
                 type: 'information',
                 content: data.length > 0 ? 'Teams were loaded' : 'No Teams were found'
             }));
-            setTimeout(() => dispatch(popNotification()), 10000);
+            setTimeout(() => dispatch(popNotification()), 5000);
         }).catch(error => {
             dispatch(pushNotification({
                 type: 'error',
                 content: error.message
             }));
-            setTimeout(() => dispatch(popNotification()), 10000);
+            setTimeout(() => dispatch(popNotification()), 5000);
         });
     }, [dispatch]);
     return (
@@ -140,13 +140,13 @@ export default function Matches({ user }) {
                         type: 'success',
                         content: `Match ${data.localTeam.name} vs. ${data.guestTeam.name} - ${data.date} was added`
                     }));
-                    setTimeout(() => dispatch(popNotification()), 10000);
+                    setTimeout(() => dispatch(popNotification()), 5000);
                 }).catch(error => {
                     dispatch(pushNotification({
                         type: 'error',
                         content: error.message
                     }));
-                    setTimeout(() => dispatch(popNotification()), 10000);
+                    setTimeout(() => dispatch(popNotification()), 5000);
                 });
             }}>
                 <label htmlFor='date'>Date</label>

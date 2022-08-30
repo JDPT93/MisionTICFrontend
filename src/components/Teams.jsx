@@ -18,13 +18,13 @@ export default function Teams() {
                 type: 'information',
                 content: data.length > 0 ? 'Teams were loaded' : 'No Teams were found'
             }));
-            setTimeout(() => dispatch(popNotification()), 10000);
+            setTimeout(() => dispatch(popNotification()), 5000);
         }).catch(error => {
             dispatch(pushNotification({
                 type: 'error',
                 content: error.message
             }));
-            setTimeout(() => dispatch(popNotification()), 10000);
+            setTimeout(() => dispatch(popNotification()), 5000);
         });
     }, [dispatch]);
     return (
@@ -41,13 +41,13 @@ export default function Teams() {
                         type: 'success',
                         content: `Team '${data.name}' was added`
                     }));
-                    setTimeout(() => dispatch(popNotification()), 10000);
+                    setTimeout(() => dispatch(popNotification()), 5000);
                 }).catch(error => {
                     dispatch(pushNotification({
                         type: 'error',
                         content: error.message
                     }));
-                    setTimeout(() => dispatch(popNotification()), 10000);
+                    setTimeout(() => dispatch(popNotification()), 5000);
                 });
             }}>
                 <label htmlFor='name'>Team Name</label>

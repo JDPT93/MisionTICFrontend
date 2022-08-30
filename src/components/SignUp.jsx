@@ -26,13 +26,13 @@ export default function SignUp() {
                     type: 'success',
                     content: `Welcome ${data.user.fullName}!`
                 }));
-                setTimeout(() => dispatch(popNotification()), 10000);
+                setTimeout(() => dispatch(popNotification()), 5000);
             }).catch(error => {
                 dispatch(pushNotification({
                     type: 'error',
                     content: error.message
                 }));
-                setTimeout(() => dispatch(popNotification()), 10000);
+                setTimeout(() => dispatch(popNotification()), 5000);
             });
         }}>
             <h2>Sign up</h2>
