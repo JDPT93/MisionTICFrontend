@@ -11,8 +11,11 @@ const matchesSlice = createSlice({
         addMatch(state, action) {
             state.push(action.payload);
         },
+        updateMatch(state, action) {
+            Object.assign(state.find(match => match.id === action.payload.id) || {}, action.payload);
+        },
     },
 });
 
-export const { addMatch, loadMatches } = matchesSlice.actions;
+export const { addMatch, loadMatches, updateMatch } = matchesSlice.actions;
 export default matchesSlice.reducer;

@@ -4,12 +4,12 @@ import './styles/Matches.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { popNotification, pushNotification } from '../slices/notificationsSlice';
-import { addMatch, loadMatches } from '../slices/matchesSlice';
+import { addMatch, loadMatches, updateMatch } from '../slices/matchesSlice';
 import { loadTeams } from '../slices/teamsSlice';
 
 import api from '../api';
 
-export function MatchesTable() {
+export function MatchesTable({ editable }) {
     const matches = useSelector(state => [...state.matches].sort((leftMatch, rightMatch) => new Date(rightMatch.date).getTime() - new Date(leftMatch.date).getTime()));
     const dispatch = useDispatch();
     React.useEffect(() => {
@@ -50,8 +50,50 @@ export function MatchesTable() {
                             <td>{match.user.fullName}</td>
                             <td>{match.date.substr(0, 16).replace('T', ' ')}</td>
                             <td>{match.localTeam.name}</td>
-                            <td>{match.localGoals}</td>
-                            <td>{match.guestGoals}</td>
+                            <td>{editable
+                                ? <input defaultValue={match.localGoals} type='number' onChange={event => {
+                                    api.matches.save({
+                                        ...match,
+                                        localGoals: event.target.value,
+                                    }).then(data => {
+                                        dispatch(updateMatch(data));
+                                        dispatch(pushNotification({
+                                            type: 'success',
+                                            content: `Match ${data.localTeam.name} vs. ${data.guestTeam.name} - ${data.date} was updated`
+                                        }));
+                                        setTimeout(() => dispatch(popNotification()), 10000);
+                                    }).catch(error => {
+                                        dispatch(pushNotification({
+                                            type: 'error',
+                                            content: error.message
+                                        }));
+                                        setTimeout(() => dispatch(popNotification()), 10000);
+                                    });
+                                }} />
+                                : match.localGoals
+                            }</td>
+                            <td>{editable
+                                ? <input defaultValue={match.guestGoals} type='number' onChange={event => {
+                                    api.matches.save({
+                                        ...match,
+                                        guestGoals: event.target.value,
+                                    }).then(data => {
+                                        dispatch(updateMatch(data));
+                                        dispatch(pushNotification({
+                                            type: 'success',
+                                            content: `Match ${data.localTeam.name} vs. ${data.guestTeam.name} - ${data.date} was updated`
+                                        }));
+                                        setTimeout(() => dispatch(popNotification()), 10000);
+                                    }).catch(error => {
+                                        dispatch(pushNotification({
+                                            type: 'error',
+                                            content: error.message
+                                        }));
+                                        setTimeout(() => dispatch(popNotification()), 10000);
+                                    });
+                                }} />
+                                : match.guestGoals
+                            }</td>
                             <td>{match.guestTeam.name}</td>
                         </tr>
                     )}
@@ -125,7 +167,7 @@ export default function Matches({ user }) {
                 <input defaultValue={0} id='guestGoals' min={0} name='guestGoals' type='number' />
                 <button type='submit'>Save Team</button>
             </form>
-            <MatchesTable />
+            <MatchesTable editable={true} />
         </div >
     );
 }

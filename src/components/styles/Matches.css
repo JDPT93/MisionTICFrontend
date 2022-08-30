@@ -17,3 +17,7 @@
     flex-direction: column;
     margin: 16px;
 }
+
+#matches>table input {
+    width: 80px;
+}

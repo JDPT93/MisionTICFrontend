@@ -40,7 +40,7 @@ export default function App() {
                             <Teams user={user} />
                         </Main>
                         :
-                        <Error code={401} />
+                        <Error code={403} />
                     } />
                     <Route exact path='/matches' element={user
                         ?
@@ -48,7 +48,7 @@ export default function App() {
                             <Matches user={user} />
                         </Main>
                         :
-                        <Error code={401} />
+                        <Error code={403} />
                     } />
                     <Route exact path='/results' element={user
                         ?
@@ -56,7 +56,7 @@ export default function App() {
                             <Results user={user} />
                         </Main>
                         :
-                        <Error code={401} />
+                        <Error code={403} />
                     } />
                     <Route path='*' element={<Error code={404} />} />
                 </Routes>
