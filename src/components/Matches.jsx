@@ -51,7 +51,7 @@ export function MatchesTable({ editable }) {
                             <td>{match.date.substr(0, 16).replace('T', ' ')}</td>
                             <td>{match.localTeam.name}</td>
                             <td>{editable
-                                ? <input defaultValue={match.localGoals} type='number' onChange={event => {
+                                ? <input defaultValue={match.localGoals} min={0} onChange={event => {
                                     api.matches.save({
                                         ...match,
                                         localGoals: event.target.value,
@@ -69,11 +69,11 @@ export function MatchesTable({ editable }) {
                                         }));
                                         setTimeout(() => dispatch(popNotification()), 5000);
                                     });
-                                }} />
+                                }} type='number' />
                                 : match.localGoals
                             }</td>
                             <td>{editable
-                                ? <input defaultValue={match.guestGoals} type='number' onChange={event => {
+                                ? <input defaultValue={match.guestGoals} min={0} onChange={event => {
                                     api.matches.save({
                                         ...match,
                                         guestGoals: event.target.value,
@@ -91,7 +91,7 @@ export function MatchesTable({ editable }) {
                                         }));
                                         setTimeout(() => dispatch(popNotification()), 5000);
                                     });
-                                }} />
+                                }} type='number' />
                                 : match.guestGoals
                             }</td>
                             <td>{match.guestTeam.name}</td>
