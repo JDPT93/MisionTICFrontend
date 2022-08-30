@@ -38,8 +38,8 @@ export function MatchesTable({ editable }) {
                         <th>User</th>
                         <th>Date</th>
                         <th>Local Team</th>
-                        <th>Local Goals</th>
-                        <th>Guest Goals</th>
+                        <th>Local Team Goals</th>
+                        <th>Guest Team Goals</th>
                         <th>Guest Team</th>
                     </tr>
                 </thead>
@@ -51,10 +51,10 @@ export function MatchesTable({ editable }) {
                             <td>{match.date.substr(0, 16).replace('T', ' ')}</td>
                             <td>{match.localTeam.name}</td>
                             <td>{editable
-                                ? <input defaultValue={match.localGoals} min={0} onChange={event => {
+                                ? <input defaultValue={match.localTeamGoals} min={0} onChange={event => {
                                     api.matches.save({
                                         ...match,
-                                        localGoals: event.target.value,
+                                        localTeamGoals: event.target.value,
                                     }).then(data => {
                                         dispatch(updateMatch(data));
                                         dispatch(pushNotification({
@@ -70,13 +70,13 @@ export function MatchesTable({ editable }) {
                                         setTimeout(() => dispatch(popNotification()), 5000);
                                     });
                                 }} type='number' />
-                                : match.localGoals
+                                : match.localTeamGoals
                             }</td>
                             <td>{editable
-                                ? <input defaultValue={match.guestGoals} min={0} onChange={event => {
+                                ? <input defaultValue={match.guestTeamGoals} min={0} onChange={event => {
                                     api.matches.save({
                                         ...match,
-                                        guestGoals: event.target.value,
+                                        guestTeamGoals: event.target.value,
                                     }).then(data => {
                                         dispatch(updateMatch(data));
                                         dispatch(pushNotification({
@@ -92,7 +92,7 @@ export function MatchesTable({ editable }) {
                                         setTimeout(() => dispatch(popNotification()), 5000);
                                     });
                                 }} type='number' />
-                                : match.guestGoals
+                                : match.guestTeamGoals
                             }</td>
                             <td>{match.guestTeam.name}</td>
                         </tr>
@@ -131,8 +131,8 @@ export default function Matches({ user }) {
                     localTeam: teams[event.target.localTeam.value],
                     guestTeam: teams[event.target.guestTeam.value],
                     date: event.target.date.value,
-                    localGoals: event.target.localGoals.value,
-                    guestGoals: event.target.guestGoals.value,
+                    localTeamGoals: event.target.localTeamGoals.value,
+                    guestTeamGoals: event.target.guestTeamGoals.value,
                 }).then(data => {
                     event.target.reset();
                     dispatch(addMatch(data));
@@ -156,15 +156,15 @@ export default function Matches({ user }) {
                     <option disabled value={-1}>Choose a Team</option>
                     {teams.map((team, index) => <option key={`local-team-${index}`} value={index}>{team.name}</option>)}
                 </select>
-                <label htmlFor='localGoals'>Local Goals</label>
-                <input defaultValue={0} id='localGoals' min={0} name='localGoals' type='number' />
+                <label htmlFor='localTeamGoals'>Local Team Goals</label>
+                <input defaultValue={0} id='localTeamGoals' min={0} name='localTeamGoals' type='number' />
                 <label htmlFor='guestTeam'>Guest Team</label>
                 <select defaultValue={-1} id='guestTeam' name='guestTeam'>
                     <option disabled value={-1}>Choose a Team</option>
                     {teams.map((team, index) => <option key={`local-team-${index}`} value={index}>{team.name}</option>)}
                 </select>
-                <label htmlFor='guestGoals'>Guest Goals</label>
-                <input defaultValue={0} id='guestGoals' min={0} name='guestGoals' type='number' />
+                <label htmlFor='guestTeamGoals'>Guest Team Goals</label>
+                <input defaultValue={0} id='guestTeamGoals' min={0} name='guestTeamGoals' type='number' />
                 <button type='submit'>Save Team</button>
             </form>
             <MatchesTable editable={true} />
