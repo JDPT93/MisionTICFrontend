@@ -165,7 +165,7 @@ export default function Matches({ user }) {
                 </select>
                 <label htmlFor='guestTeamGoals'>Guest Team Goals</label>
                 <input defaultValue={0} id='guestTeamGoals' min={0} name='guestTeamGoals' type='number' />
-                <button type='submit'>Save Team</button>
+                <button type='submit'>Save Match</button>
             </form>
             <MatchesTable editable={true} />
         </div >
